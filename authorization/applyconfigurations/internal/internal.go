@@ -104,7 +104,6 @@ var schemaYAML = typed.YAMLObject(`types:
     - name: content
       type:
         namedType: __untyped_atomic_
-      default: {}
     - name: isNonResourceURL
       type:
         scalar: boolean
@@ -149,7 +148,6 @@ var schemaYAML = typed.YAMLObject(`types:
     - name: content
       type:
         namedType: __untyped_atomic_
-      default: {}
     - name: groups
       type:
         list:
@@ -213,7 +211,6 @@ var schemaYAML = typed.YAMLObject(`types:
     - name: attributeRestrictions
       type:
         namedType: __untyped_atomic_
-      default: {}
     - name: nonResourceURLs
       type:
         list:
@@ -247,7 +244,6 @@ var schemaYAML = typed.YAMLObject(`types:
     - name: content
       type:
         namedType: __untyped_atomic_
-      default: {}
     - name: isNonResourceURL
       type:
         scalar: boolean
@@ -401,7 +397,6 @@ var schemaYAML = typed.YAMLObject(`types:
     - name: content
       type:
         namedType: __untyped_atomic_
-      default: {}
     - name: groups
       type:
         list:
@@ -587,7 +582,6 @@ var schemaYAML = typed.YAMLObject(`types:
     - name: creationTimestamp
       type:
         namedType: io.k8s.apimachinery.pkg.apis.meta.v1.Time
-      default: {}
     - name: deletionGracePeriodSeconds
       type:
         scalar: numeric
