@@ -4,11 +4,11 @@ package v1
 
 import (
 	"context"
+	"k8s.io/client-go/rest"
 
 	v1 "github.com/openshift/api/security/v1"
 	scheme "github.com/openshift/client-go/security/clientset/versioned/scheme"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	gentype "k8s.io/client-go/gentype"
 )
 
 // PodSecurityPolicySelfSubjectReviewsGetter has a method to return a PodSecurityPolicySelfSubjectReviewInterface.
@@ -25,17 +25,24 @@ type PodSecurityPolicySelfSubjectReviewInterface interface {
 
 // podSecurityPolicySelfSubjectReviews implements PodSecurityPolicySelfSubjectReviewInterface
 type podSecurityPolicySelfSubjectReviews struct {
-	*gentype.Client[*v1.PodSecurityPolicySelfSubjectReview]
+	rest.Interface
+	namespace string
 }
 
 // newPodSecurityPolicySelfSubjectReviews returns a PodSecurityPolicySelfSubjectReviews
 func newPodSecurityPolicySelfSubjectReviews(c *SecurityV1Client, namespace string) *podSecurityPolicySelfSubjectReviews {
-	return &podSecurityPolicySelfSubjectReviews{
-		gentype.NewClient[*v1.PodSecurityPolicySelfSubjectReview](
-			"podsecuritypolicyselfsubjectreviews",
-			c.RESTClient(),
-			scheme.ParameterCodec,
-			namespace,
-			func() *v1.PodSecurityPolicySelfSubjectReview { return &v1.PodSecurityPolicySelfSubjectReview{} }),
-	}
+	return &podSecurityPolicySelfSubjectReviews{c.RESTClient(), namespace}
+}
+
+// Create takes the representation of a podSecurityPolicySelfSubjectReview and creates it.  Returns the server's representation of the podSecurityPolicySelfSubjectReview, and an error, if there is any.
+func (c *podSecurityPolicySelfSubjectReviews) Create(ctx context.Context, podSecurityPolicySelfSubjectReview *v1.PodSecurityPolicySelfSubjectReview, opts metav1.CreateOptions) (result *v1.PodSecurityPolicySelfSubjectReview, err error) {
+	result = &v1.PodSecurityPolicySelfSubjectReview{}
+	err = c.Interface.Post().
+		Namespace(c.namespace).
+		Resource("podsecuritypolicyselfsubjectreviews").
+		VersionedParams(&opts, scheme.ParameterCodec).
+		Body(podSecurityPolicySelfSubjectReview).
+		Do(ctx).
+		Into(result)
+	return
 }

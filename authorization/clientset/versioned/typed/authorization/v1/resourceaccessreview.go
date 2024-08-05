@@ -4,11 +4,11 @@ package v1
 
 import (
 	"context"
+	"k8s.io/client-go/rest"
 
 	v1 "github.com/openshift/api/authorization/v1"
 	scheme "github.com/openshift/client-go/authorization/clientset/versioned/scheme"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	gentype "k8s.io/client-go/gentype"
 )
 
 // ResourceAccessReviewsGetter has a method to return a ResourceAccessReviewInterface.
@@ -26,25 +26,18 @@ type ResourceAccessReviewInterface interface {
 
 // resourceAccessReviews implements ResourceAccessReviewInterface
 type resourceAccessReviews struct {
-	*gentype.Client[*v1.ResourceAccessReview]
+	rest.Interface
 }
 
 // newResourceAccessReviews returns a ResourceAccessReviews
 func newResourceAccessReviews(c *AuthorizationV1Client) *resourceAccessReviews {
-	return &resourceAccessReviews{
-		gentype.NewClient[*v1.ResourceAccessReview](
-			"resourceaccessreviews",
-			c.RESTClient(),
-			scheme.ParameterCodec,
-			"",
-			func() *v1.ResourceAccessReview { return &v1.ResourceAccessReview{} }),
-	}
+	return &resourceAccessReviews{c.RESTClient()}
 }
 
 // Create takes the representation of a resourceAccessReview and creates it.  Returns the server's representation of the resourceAccessReviewResponse, and an error, if there is any.
 func (c *resourceAccessReviews) Create(ctx context.Context, resourceAccessReview *v1.ResourceAccessReview, opts metav1.CreateOptions) (result *v1.ResourceAccessReviewResponse, err error) {
 	result = &v1.ResourceAccessReviewResponse{}
-	err = c.GetClient().Post().
+	err = c.Interface.Post().
 		Resource("resourceaccessreviews").
 		VersionedParams(&opts, scheme.ParameterCodec).
 		Body(resourceAccessReview).
