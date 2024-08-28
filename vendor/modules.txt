@@ -76,7 +76,7 @@ github.com/modern-go/reflect2
 # github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822
 ## explicit
 github.com/munnerz/goautoneg
-# github.com/openshift/api v0.0.0-20240527133614-ba11c1587003 => github.com/atiratree/api v0.0.0-20240815160400-5b5d653b3369
+# github.com/openshift/api v0.0.0-20240527133614-ba11c1587003 => github.com/atiratree/api v0.0.0-20240828214123-d1c589f49b49
 ## explicit; go 1.22.0
 github.com/openshift/api/apiserver/v1
 github.com/openshift/api/apps/v1
@@ -355,7 +355,7 @@ k8s.io/apimachinery/pkg/version
 k8s.io/apimachinery/pkg/watch
 k8s.io/apimachinery/third_party/forked/golang/json
 k8s.io/apimachinery/third_party/forked/golang/reflect
-# k8s.io/client-go v0.31.0 => github.com/atiratree/kubernetes-client-go v0.0.0-20240806190405-295191fcd656
+# k8s.io/client-go v0.31.0
 ## explicit; go 1.22.0
 k8s.io/client-go/applyconfigurations/core/v1
 k8s.io/client-go/applyconfigurations/internal
@@ -488,5 +488,4 @@ sigs.k8s.io/structured-merge-diff/v4/value
 ## explicit; go 1.12
 sigs.k8s.io/yaml
 sigs.k8s.io/yaml/goyaml.v2
-# k8s.io/client-go => github.com/atiratree/kubernetes-client-go v0.0.0-20240806190405-295191fcd656
-# github.com/openshift/api => github.com/atiratree/api v0.0.0-20240815160400-5b5d653b3369
+# github.com/openshift/api => github.com/atiratree/api v0.0.0-20240828214123-d1c589f49b49

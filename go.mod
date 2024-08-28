@@ -15,10 +15,7 @@ require (
 	sigs.k8s.io/structured-merge-diff/v4 v4.4.1
 )
 
-// TODO: remove after we bring in changes from https://github.com/kubernetes/kubernetes/pull/126557 which is required for generated clients
-replace k8s.io/client-go => github.com/atiratree/kubernetes-client-go v0.0.0-20240806190405-295191fcd656
-
-replace github.com/openshift/api => github.com/atiratree/api v0.0.0-20240815160400-5b5d653b3369
+replace github.com/openshift/api => github.com/atiratree/api v0.0.0-20240828214123-d1c589f49b49
 
 require (
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
